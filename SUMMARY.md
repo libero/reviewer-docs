@@ -19,5 +19,5 @@
 
 ## Interactions
 
-* [Login Flow](interactions/login-flow.md)
+* [eLife Login Flow](interactions/login-flow.md)
 
