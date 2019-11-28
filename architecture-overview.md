@@ -12,9 +12,9 @@ The architecture is a standard microservices based architecture which is explain
   * **Export Event Handler,** TBD - The responsibility is to determine which type of export is required and routing the correct message to the correct export handler such as the "**Meca Exporter**"
   * **Storage Service**, TBD - The responsibility is to handle all files within the system.
 
-![Libero Reviewer - Logical Architecture](https://docs.google.com/drawings/u/0/d/s6yoKEMKyqfZUUbCHVbuZgA/image?w=643&h=379&rev=442&ac=1&parent=1tLi5QxH44_yP-TyG9HQTSPablYJRiMXTWwTrr_1mFHE)
+![Libero Reviewer - Logical Architecture](.gitbook/assets/image%20%282%29.png)
 
-{% embed url="https://docs.google.com/drawings/d/1Z2jY0VaifU7g\_iD9KXedHcyW-SFhIv7n4Vt23TLOZ9c/edit" %}
+{% embed url="https://docs.google.com/drawings/d/1Z2jY0VaifU7g\_iD9KXedHcyW-SFhIv7n4Vt23TLOZ9c/view" %}
 
-![](.gitbook/assets/logical-architecture-overview.svg)
+
 
