@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [Architecture Overview](architecture-overview.md)
+* [Architecture](architecture-overview.md)
 
 ## Bounded Contexts
 
