@@ -1,6 +1,7 @@
 # Table of contents
 
-* [Technical Architecture](README.md)
+* [Introduction](README.md)
+* [Architecture Overview](architecture-overview.md)
 
 ## Bounded Contexts
 
