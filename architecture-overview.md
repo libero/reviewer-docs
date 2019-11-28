@@ -14,5 +14,7 @@ The architecture is a standard microservices based architecture which is explain
 
 ![Libero Reviewer - Logical Architecture](https://docs.google.com/drawings/u/0/d/s6yoKEMKyqfZUUbCHVbuZgA/image?w=643&h=379&rev=442&ac=1&parent=1tLi5QxH44_yP-TyG9HQTSPablYJRiMXTWwTrr_1mFHE)
 
+{% embed url="https://docs.google.com/drawings/d/1Z2jY0VaifU7g\_iD9KXedHcyW-SFhIv7n4Vt23TLOZ9c/edit" %}
 
+![](.gitbook/assets/logical-architecture-overview.svg)
 
