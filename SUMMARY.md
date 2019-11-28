@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [How to update this book](how-to-update-this-book.md)
 * [Architecture](architecture-overview.md)
 
 ## Bounded Contexts
