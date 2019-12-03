@@ -34,9 +34,32 @@
     <tr>
       <td style="text-align:left"><b>Dependents</b>
       </td>
-      <td style="text-align:left"><a href="event-bus.md">Event Bus</a>
+      <td style="text-align:left">
+        <p><a href="event-bus.md">Event Bus</a>
+        </p>
+        <p>Postgres</p>
       </td>
     </tr>
   </tbody>
-</table>
+</table>## Design
+
+how what and where 
+
+## Configuration
+
+* database connection / config
+
+## Deploy & Test
+
+* Explain  docker 
+* Explain tests
+* 
+## Examples
+
+* Storage format
+* Example Code see continuum-auth
+
+```text
+FROM xxxx
+```
 
