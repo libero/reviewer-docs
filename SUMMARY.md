@@ -3,12 +3,14 @@
 * [Introduction](README.md)
 * [How to update this book](how-to-update-this-book.md)
 * [Architecture](architecture-overview.md)
+* [Reviewer Client](reviewer-client.md)
+* [Reviewer Proxy](reviewer-proxy.md)
 
 ## Bounded Contexts
 
-* [Submission](bounded-contexts/submission.md)
+* [Submission Server](bounded-contexts/submission.md)
 
-## Services
+## Shared Services <a id="services"></a>
 
 * [Audit Service](services/audit.md)
 * [Event Bus](services/event-bus.md)
