@@ -2,46 +2,18 @@
 
 ## Summary
 
-<table>
-  <thead>
-    <tr>
-      <th style="text-align:left"></th>
-      <th style="text-align:left">Description / Link</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align:left"><b>Responsibility</b>
-      </td>
-      <td style="text-align:left">To audit, by listening to <code>audit</code>events from the event bus and
-        then recording them to the database. The responsibility of the other components
-        is to generate these <code>audit</code>messages.</td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Repository</b>
-      </td>
-      <td style="text-align:left"><a href="https://github.com/libero/audit">https://github.com/libero/audit</a>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Interfaces</b>
-      </td>
-      <td style="text-align:left"><code>GraphQL</code>
-      </td>
-    </tr>
-    <tr>
-      <td style="text-align:left"><b>Dependents</b>
-      </td>
-      <td style="text-align:left">
-        <p><a href="../services/event-bus.md">Event Bus</a>
-        </p>
-        <p>Postgres</p>
-      </td>
-    </tr>
-  </tbody>
-</table>## Design
+|   | Description / Link |
+| :--- | :--- |
+| **Responsibility** | The submission server has the responsibility of serving data to the [Reviewer Client](../reviewer-client.md) within the bounded context of "Submission". |
+| **Repository** | [https://github.com/libero/reviewer-submission](https://github.com/libero/reviewer-submission) |
+| **Interfaces** | `GraphQL` |
+| **Dependents** | Postgres |
 
-how what and where 
+## Design
+
+At the moment there is only one server \(Nest.js\) with one bounded context \(submission\). In the future there needs to be a decision as to whether all the bounded contexts for the server will live in one repository or seperate ones - either as packages or seperate servers in themselves.
+
+TBD - how what and where 
 
 ## Configuration
 
