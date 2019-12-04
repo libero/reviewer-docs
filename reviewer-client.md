@@ -32,6 +32,12 @@
         <p>&lt;library of react components&gt;</p>
       </td>
     </tr>
+    <tr>
+      <td style="text-align:left"><b>Docker</b>
+      </td>
+      <td style="text-align:left"><a href="https://hub.docker.com/r/liberoadmin/reviewer-client">https://hub.docker.com/r/liberoadmin/reviewer-client</a>
+      </td>
+    </tr>
   </tbody>
 </table>## Design
 
