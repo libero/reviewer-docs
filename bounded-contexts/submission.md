@@ -1,7 +1,5 @@
 # Submission Server
 
-The bounded context of _**Submission**_ is implemented with three components.
-
 ## Summary
 
 <table>
@@ -28,9 +26,7 @@ The bounded context of _**Submission**_ is implemented with three components.
     <tr>
       <td style="text-align:left"><b>Interfaces</b>
       </td>
-      <td style="text-align:left">
-        <p>&lt;code&gt;&lt;/code&gt;<a href="https://github.com/libero/audit/blob/b51a6157c3b773dffdd3bef4650e1f70f278f302/src/domain/types.ts#L8"><code>AuditRepository</code></a>&lt;code&gt;&lt;/code&gt;</p>
-        <p>&lt;code&gt;&lt;/code&gt;<a href="https://github.com/libero/audit/blob/b51a6157c3b773dffdd3bef4650e1f70f278f302/src/domain/types.ts#L1"><code>AuditLogItem</code></a>&lt;code&gt;&lt;/code&gt;</p>
+      <td style="text-align:left"><code>GraphQL</code>
       </td>
     </tr>
     <tr>
