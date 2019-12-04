@@ -5,6 +5,7 @@
 * [Architecture](architecture-overview.md)
 * [Reviewer Client](reviewer-client.md)
 * [Reviewer Proxy](reviewer-proxy.md)
+* [Configuration](configuration.md)
 
 ## Bounded Contexts
 
