@@ -40,6 +40,12 @@
         <p>Postgres</p>
       </td>
     </tr>
+    <tr>
+      <td style="text-align:left"><b>Docker</b>
+      </td>
+      <td style="text-align:left"><a href="https://hub.docker.com/r/liberoadmin/audit">https://hub.docker.com/r/liberoadmin/audit</a>
+      </td>
+    </tr>
   </tbody>
 </table>## Design
 

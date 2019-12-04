@@ -8,6 +8,7 @@
 | **Repository** | [https://github.com/libero/reviewer-submission](https://github.com/libero/reviewer-submission) |
 | **Interfaces** | `GraphQL` |
 | **Dependents** | Postgres |
+| **Docker** | [https://hub.docker.com/r/liberoadmin/reviewer-submission](https://hub.docker.com/r/liberoadmin/reviewer-submission) |
 
 ## Design
 
