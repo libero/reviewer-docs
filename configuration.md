@@ -4,9 +4,37 @@
 
 Configuration values for each service are provided  via a `config.json` that is read by the main process at startup. The file should reside in a top level `config` folder. An example file `config.example.json` should be provided in that folder to serve as a quick start for local development.
 
-The location of the configuration file is determined by the `CONFIG_PATH` environment variable which defaults to `/etc/reviewer/config.json`.
+Here is an example of what an configuration file would look like:
 
-## Running locally on host
+```javascript
+{
+  "port": 3000,
+  "rabbitmq_url": "rabbitmq"
+}
+```
+
+## Reading the configuration
+
+The service should define a file that exports the configuration read from the configuration file, \(usually called `config.ts`\).
+
+```typescript
+export interface Config {
+  port: number;
+  rabbitmq_url: string;
+  // more configuration values...
+}
+
+const configPath = process.env.CONFIG_PATH ? process.env.CONFIG_PATH : '/etc/reviewer/config.json';
+const config: Config = JSON.parse(readFileSync(configPath, 'utf8'));
+
+export default config;
+```
+
+##  Environments
+
+The location of the configuration file is determined by the `CONFIG_PATH` environment variable which defaults to `/etc/reviewer/config.json`. 
+
+### Local
 
 When running locally via `yarn run start:dev`,  the  `CONFIG_PATH` environment variable is overridden to `./config/config.js` as part of the command definition in the `package.json` file:
 
@@ -20,9 +48,9 @@ When running locally via `yarn run start:dev`,  the  `CONFIG_PATH` environment v
 ...
 ```
 
-## Running locally in docker compose
+### Container
 
-In the `docker-compose.yml` file, the `config` folder should should be mounted into `/etc/reviewer` folder.
+In the `docker-compose.yml` file, the `config` folder should should be mounted into `/etc/reviewer` folder. Specifying the `CONFIG_PATH` is not necessary as long as the file is mapped into the correct location in the container.
 
 ```yaml
 ...
@@ -32,9 +60,9 @@ In the `docker-compose.yml` file, the `config` folder should should be mounted i
 ...
 ```
 
-## Running on Kubernetes
+### Kubernetes
 
-Its recommended to use a `ConfigMap` resource to generate the file:
+Its recommended to use a `ConfigMap` resource to generate the file and mount it to the correct path.
 
 ```yaml
 apiVersion: v1
