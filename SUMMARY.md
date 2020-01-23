@@ -16,7 +16,7 @@
 * [Audit Service](services/audit.md)
 * [Event Bus](services/event-bus.md)
 * [Configuration Service](services/configuration-service.md)
-* [People Service](services/people-service.md)
+* [Continuum Adaptor](services/continuum-adaptor.md)
 * [Export Event Handler](services/export-event-handler.md)
 * [Storage Service](services/storage-service.md)
 
