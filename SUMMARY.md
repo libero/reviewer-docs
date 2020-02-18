@@ -9,6 +9,7 @@
 
 ## Bounded Contexts
 
+* [Design Principles](bounded-contexts/design-principles.md)
 * [Submission Server](bounded-contexts/submission.md)
 
 ## Shared Services <a id="services"></a>
