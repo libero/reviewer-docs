@@ -1,90 +1,70 @@
 # Configuration
 
-## Summary
+## Overview
 
-Configuration values for each service are provided  via a `config.json` that is read by the main process at startup. The file should reside in a top level `config` folder. An example file `config.example.json` should be provided in that folder to serve as a quick start for local development.
+Configuration for each service is done primarily through environment variables:
 
-Here is an example of what an configuration file would look like:
-
-```javascript
-{
-  "port": 3000,
-  "rabbitmq_url": "rabbitmq"
-}
+```bash
+PORT: 3000
+DATABASE_NAME: postgres
+DATABASE_USER: postgres
+DATABASE_PASSWORD: postgres
+DATABASE_HOST: postgres
+DATABASE_PORT: 5432
 ```
 
-## Reading the configuration
+### Reading the configuration
 
-The service should define a file that exports the configuration read from the configuration file, \(usually called `config.ts`\).
+The service should define a configuration type to hold all the configuration values needed. Those values can then be loaded when the service boots
 
 ```typescript
 export interface Config {
-  port: number;
-  rabbitmq_url: string;
-  // more configuration values...
-}
+    port: number;
+    knex: KnexConfig;
+};
 
-const configPath = process.env.CONFIG_PATH ? process.env.CONFIG_PATH : '/etc/reviewer/config.json';
-const config: Config = JSON.parse(readFileSync(configPath, 'utf8'));
+const appConfig: Config = {
+    port: Number(process.env.PORT || 3000),
+    knex: {
+        client: 'pg',
+        connection: {
+            host: process.env.DATABASE_HOST,
+            database: process.env.DATABASE_NAME,
+            password: process.env.DATABASE_PASSWORD,
+            user: process.env.DATABASE_USER,
+            port: Number(process.env.DATABASE_PORT),
+        },
+    },
+};
 
-export default config;
+
+export default appConfig;
 ```
 
-##  Environments
+In some cases, a sensible value can be set if not provided by the environment
 
-The location of the configuration file is determined by the `CONFIG_PATH` environment variable which defaults to `/etc/reviewer/config.json`. 
+### Docker Compose
 
-### Local
-
-When running locally via `yarn run start:dev`,  the  `CONFIG_PATH` environment variable is overridden to `./config/config.js` as part of the command definition in the `package.json` file:
-
-```javascript
-{
-  scripts: {
-    ...
-    "start:dev": "CONFIG_PATH=config/config.json nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/main.ts | pino-pretty"
-  }
-}
-...
-```
-
-### Container
-
-In the `docker-compose.yml` file, the `config` folder should should be mounted into `/etc/reviewer` folder. Specifying the `CONFIG_PATH` is not necessary as long as the file is mapped into the correct location in the container.
+When running with docker compose, use the `environments` section of the service to set the values
 
 ```yaml
-...
-    volumes:
-      - ./:/src/:z
-      - ./config/:/etc/reviewer/:z
+services:
+  submission:
+    environment:
+      PORT: 3000
+      DATABASE_NAME: postgres
+      DATABASE_USER: postgres
+      DATABASE_PASSWORD: postgres
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
 ...
 ```
 
 ### Kubernetes
 
-Its recommended to use a `ConfigMap` resource to generate the file and mount it to the correct path.
+In a `Deployment` set the environment variables for each container
 
 ```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "libero-reviewer.fullname" . }}-submission
-  labels:
-    app.kubernetes.io/name: {{ include "libero-reviewer.name" . }}
-    helm.sh/chart: {{ include "libero-reviewer.chart" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-data:
-  config.json: |
-    {
-      "port": 3000,
-      ...
-    }
-```
-
-The `ConfigMap` should then be mounted in the deployment template for the service:
-
-```text
 apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
@@ -96,15 +76,66 @@ metadata:
       spec:
         containers:
           ...
-          volumeMounts:
-            - name: config-volume
-              mountPath: /etc/reviewer
-      volumes:
-        - name: config-volume
-          configMap:
-            name: {{ include "libero-reviewer.fullname" . }}-submission
+          env:
+            - name: DATABASE_NAME
+              value: "{{ include "libero-reviewer.fullname" . }}-postgresql"
+            - name: DATABASE_PORT
+              value: "5432"
+            - name: DATABASE_USER
+              value: "{{ .Values.postgresql.postgresqlUsername }}"
+            - name: DATABASE_PASSWORD
+              value: "{{ .Values.postgresql.postgresqlPassword }}"
+            - name: DATABASE_NAME
+              value: "{{ .Values.postgresql.postgresqlDatabase }}"
 
 ```
+
+## Service settings
+
+### Submission
+
+The submission service uses the following configuration values
+
+`DATABASE_NAME`: postgres database name  
+`DATABASE_USER`: postgres username  
+`DATABASE_PASSWORD`: postgres password  
+`DATABASE_HOST`: postgres hostname  
+`DATABASE_PORT`: postgres access port
+
+`S3_AWS_ENDPOINT`: S3 service endpoint, only used for testing and dev  
+`S3_ACCESS_KEY_ID`: AWS access key id for S3  
+`S3_SECRET_ACCESS_KEY`: Aws secrety key for S3  
+`S3_FORCE_PATH_STYLE`: Always set to 'true'  
+`S3_FILE_BUCKET`: Name of the S3 Bucket for file uploads
+
+`NEW_RELIC_HOME`: local path to newrelic.js config file
+
+`MAX_QL_COMPLEXITY`: maximum GraphQL complexity \(recommended: 100\)  
+`MAX_QL_DEPTH`: maximum GraphQL query depth \(recommended: 5\)  
+`MAX_FILE_SIZE_IN_BYTES`: maximum file upload
+
+`AUTHENTICATION_JWT_SECRET`: Libero reviewer authentication secret  
+`USER_ADAPTER_URL`: Continuum Adaptor endpoint for getting current user info \(http://continuum-adaptor.url/current-user\).   
+`SCIENCE_BEAM_URL`: ScienceBeam endpoint for converting uploaded manuscript \(`http://continuum-api.url/science-beam/convert`\)  
+`SCIENCE_BEAM_TIMEOUT`: Conversion timeout value \(recommended: 20000\)
+
+### Continuum Adaptor
+
+`PORT`: The listening port for the service  
+`RABBITMQ_URL`: The url for rabbitmq.  
+`LOGIN_URL`: The url for continuum \(e.g. https://elifesciences.org/submit\)  
+`LOGIN_RETURN_URL`: The login url to return to after token exchange \(e.g. https://reviewer.elifesciences.org/login\)  
+  
+`DATABASE_NAME`: postgres database name  
+`DATABASE_USER`: postgres username  
+`DATABASE_PASSWORD`: postgres password  
+`DATABASE_HOST`: postgres hostname  
+`DATABASE_PORT`: postgres access port  
+  
+`AUTHENTICATION_JWT_SECRET`: Libero reviewer authentication secret  
+`CONTINUUM_JWT_SECRET`: The secret for continuum journal  
+`CONTINUUM_API_URL`: Continuum Api endpoint  
+`ELIFE_API_GATEWAY_SECRET`: Elife Api Gateway secret
 
 
 
