@@ -116,7 +116,7 @@ The submission service uses the following configuration values
 
 `AUTHENTICATION_JWT_SECRET`: Libero reviewer authentication secret  
 `USER_ADAPTER_URL`: Continuum Adaptor endpoint for getting current user info \(http://continuum-adaptor.url/current-user\).   
-`SCIENCE_BEAM_URL`: ScienceBeam endpoint for converting uploaded manuscript \(`http://continuum-api.url/science-beam/convert`\)  
+`SCIENCE_BEAM_URL`: ScienceBeam endpoint for converting uploaded manuscript, for example`http://continuum-api.url/science-beam/convert.` \(from continuum\)  
 `SCIENCE_BEAM_TIMEOUT`: Conversion timeout value \(recommended: 20000\)
 
 ### Continuum Adaptor
@@ -133,9 +133,9 @@ The submission service uses the following configuration values
 `DATABASE_PORT`: postgres access port  
   
 `AUTHENTICATION_JWT_SECRET`: Libero reviewer authentication secret  
-`CONTINUUM_JWT_SECRET`: The secret for continuum journal  
-`CONTINUUM_API_URL`: Continuum Api endpoint  
-`ELIFE_API_GATEWAY_SECRET`: Elife Api Gateway secret
+`CONTINUUM_JWT_SECRET`: The secret for continuum journal \(from continuum\)  
+`CONTINUUM_API_URL`: Continuum Api endpoint \(from continuum\)  
+`ELIFE_API_GATEWAY_SECRET`: Elife Api Gateway secret \(from continuum\)
 
 
 

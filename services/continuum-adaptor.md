@@ -48,34 +48,6 @@ The service provides the route `GET /current-user` to combine information from t
 
 The name is taken from the profile API under the `name.preferred` field, while the role comes from the people API under the `type.id` field.
 
-## **Configuration**
-
-```javascript
-{
-    "port": 3001,
-    "rabbitmq_url": "rabbitmq",
-    "login_url": "http://localhost:9000/submit",
-    "login_return_url": "http://localhost:9000/login",
-    "authentication_jwt_secret": "super_secret_jam",
-    "continuum_jwt_secret": "some_secret_from_journal",
-    "continuum_api_url": "http://reviewer-mocks:3003",
-    "knex": {
-        "client": "pg",
-        "connection": {
-            "host": "postgres",
-            "database": "continuum-adaptor",
-            "user": "postgres",
-            "password": "postgres",
-            "port": 5432
-        }
-    }
-}
-```
-
-## Deploy & Test
-
-
-
 ## Examples
 
 * Storage format
